@@ -1,0 +1,11 @@
+server:
+  port: 9914
+
+security:
+  ignored: /v2/api-docs
+  user.name: ${KEY_COUNTER_USER}
+  user.password: ${KEY_COUNTER_PASS}
+
+redis:
+  host: ${REDIS_HOST:localhost}
+  port: ${REDIS_PORT:6379}
