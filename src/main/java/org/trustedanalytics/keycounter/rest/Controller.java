@@ -27,8 +27,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class Controller {
 
-  final static String API_PREFIX = "/api/";
-  final static String API_VERSION = "v1";
+  static final String API_PREFIX = "/api/";
+  static final String API_VERSION = "v1";
 
   @Autowired
   RedisCounterService redisCounterService;
