@@ -25,24 +25,38 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping(Controller.API_PREFIX + Controller.API_VERSION)
 public class Controller {
 
   static final String API_PREFIX = "/api/";
   static final String API_VERSION = "v1";
+  private static final String HEALTH_CHECK_KEY = "  ҉";
 
   @Autowired
   RedisCounterService redisCounterService;
 
   @ApiOperation(
-          value = "Returns subsequent key number."
+          value = "Returns subsequent key number.",
+          notes = "Secured with basic auth."
   )
   @ApiResponses(value = {
           @ApiResponse(code = 200, message = "Key number successfully increased"),
+          @ApiResponse(code = 401, message = "User is unauthorized"),
           @ApiResponse(code = 500, message = "Internal server error"),
   })
-  @RequestMapping(value = API_PREFIX + API_VERSION + "/counter/{key}", method = RequestMethod.POST)
+  @RequestMapping(value = "/counter/{key}", method = RequestMethod.POST)
   public Integer incrementAndGetNextValue(@PathVariable String key) {
     return redisCounterService.incrementAndGetValue(key);
+  }
+
+  @ApiOperation("Checks service health.")
+  @ApiResponses(value = {
+          @ApiResponse(code = 200, message = "key-counter is healthy"),
+          @ApiResponse(code = 500, message = "key-counter is indisposed"),
+  })
+  @RequestMapping(value = "/healthz", method = RequestMethod.GET)
+  public void checkHealth() {
+    redisCounterService.incrementAndGetValue(HEALTH_CHECK_KEY);
   }
 
 }

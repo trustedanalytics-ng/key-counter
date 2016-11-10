@@ -7,7 +7,7 @@
     <groupId>org.trustedanalytics</groupId>
     <artifactId>key-counter</artifactId>
     <packaging>jar</packaging>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
 
     <parent>
         <groupId>org.trustedanalytics</groupId>
@@ -16,10 +16,10 @@
     </parent>
 
     <properties>
-        <jacoco-measurement-instructions>0.3</jacoco-measurement-instructions>
-        <jacoco-measurement-branches>0.9</jacoco-measurement-branches>
-        <jacoco-measurement-lines>0.2</jacoco-measurement-lines>
-        <jacoco-measurement-classes>0.3</jacoco-measurement-classes>
+        <jacoco-measurement-instructions>0.8</jacoco-measurement-instructions>
+        <jacoco-measurement-branches>0.99</jacoco-measurement-branches>
+        <jacoco-measurement-lines>0.7</jacoco-measurement-lines>
+        <jacoco-measurement-classes>0.99</jacoco-measurement-classes>
         <docker.imageName>${project.artifactId}</docker.imageName>
         <docker.registry>tapimages.us.enableiot.com:8080</docker.registry>
     </properties>
@@ -49,6 +49,17 @@
         </dependency>
         <!-- test -->
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.jayway.restassured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>2.5.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
@@ -65,6 +76,24 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>integration-test</id>
+                        <goals>
+                            <goal>integration-test</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>verify</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>

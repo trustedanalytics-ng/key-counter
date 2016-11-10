@@ -16,12 +16,14 @@ package org.trustedanalytics.keycounter.redisservice;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 
 @Configuration
+@Profile("!integration-test")
 public class RedisConfig {
 
   @Value("${redis.host}")
@@ -37,7 +39,7 @@ public class RedisConfig {
 
   @Bean
   public RedisTemplate<String, Integer> redisTemplate() {
-    RedisTemplate<String, Integer> redisTemplate = new RedisTemplate<String,Integer>();
+    RedisTemplate<String, Integer> redisTemplate = new RedisTemplate<>();
     redisTemplate.setConnectionFactory(redisConnectionFactory());
     redisTemplate.setKeySerializer(redisTemplate.getStringSerializer());
     return redisTemplate;
