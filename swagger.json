@@ -1,0 +1,69 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Service that generates subsequent key numbers.",
+    "version" : "v1",
+    "title" : "Key Counter API",
+    "license" : {
+      "name" : "Apache License Version 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  },
+  "host" : "localhost",
+  "basePath" : "/",
+  "tags" : [ {
+    "name" : "controller",
+    "description" : "Controller"
+  } ],
+  "paths" : {
+    "/api/v1/counter/{key}" : {
+      "post" : {
+        "tags" : [ "controller" ],
+        "summary" : "Returns subsequent key number.",
+        "description" : "Secured with basic auth.",
+        "operationId" : "incrementAndGetNextValueUsingPOST",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "*/*" ],
+        "parameters" : [ {
+          "name" : "key",
+          "in" : "path",
+          "description" : "key",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Key number successfully increased",
+            "schema" : {
+              "type" : "integer",
+              "format" : "int32"
+            }
+          },
+          "401" : {
+            "description" : "User is unauthorized"
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/v1/healthz" : {
+      "get" : {
+        "tags" : [ "controller" ],
+        "summary" : "Checks service health.",
+        "operationId" : "checkHealthUsingGET",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "*/*" ],
+        "responses" : {
+          "200" : {
+            "description" : "key-counter is healthy"
+          },
+          "500" : {
+            "description" : "key-counter is indisposed"
+          }
+        }
+      }
+    }
+  }
+}

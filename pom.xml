@@ -7,7 +7,7 @@
     <groupId>org.trustedanalytics</groupId>
     <artifactId>key-counter</artifactId>
     <packaging>jar</packaging>
-    <version>0.0.3</version>
+    <version>0.0.4</version>
 
     <parent>
         <groupId>org.trustedanalytics</groupId>
@@ -40,7 +40,7 @@
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
-            <version>2.3.1</version>
+            <version>2.6.0</version>
         </dependency>
         <dependency>
             <groupId>org.trustedanalytics</groupId>

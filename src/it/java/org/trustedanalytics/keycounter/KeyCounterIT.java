@@ -45,8 +45,8 @@ public class KeyCounterIT {
   int port;
 
   private static final String COUNTER_PATH = "/api/v1/counter/key";
-  private static final String SWAGGER_PATH = "/v2/api-docs";
   private static final String HEALTH_CHECK_PATH = "/api/v1/healthz";
+  static final String SWAGGER_PATH = "/v2/api-docs";
 
   @Before
   public void setUp() {
