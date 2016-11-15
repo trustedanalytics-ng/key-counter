@@ -2,7 +2,7 @@ server:
   port: 9914
 
 security:
-  ignored: v2/api-docs, api/v1/healthz
+  ignored: v2/api-docs, api/v1/healthz, healthz
   user.name: ${KEY_COUNTER_USER}
   user.password: ${KEY_COUNTER_PASS}
 

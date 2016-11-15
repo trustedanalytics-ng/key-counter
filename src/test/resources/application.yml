@@ -1,4 +1,4 @@
 security:
-  ignored: v2/api-docs, api/v1/healthz
+  ignored: v2/api-docs, api/v1/healthz, healthz
   user.name: test_user
   user.password: test_pass

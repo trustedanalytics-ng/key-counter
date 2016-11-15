@@ -7,7 +7,7 @@
     <groupId>org.trustedanalytics</groupId>
     <artifactId>key-counter</artifactId>
     <packaging>jar</packaging>
-    <version>0.0.4</version>
+    <version>0.0.5</version>
 
     <parent>
         <groupId>org.trustedanalytics</groupId>
@@ -92,6 +92,24 @@
                         <goals>
                             <goal>verify</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>add-test-source</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>add-test-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/it/java</source>
+                            </sources>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>

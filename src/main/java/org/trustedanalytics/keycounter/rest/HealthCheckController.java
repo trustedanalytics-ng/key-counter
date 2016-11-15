@@ -19,35 +19,17 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(Controller.API_PREFIX + Controller.API_VERSION)
-public class Controller {
+public class HealthCheckController {
 
-  static final String API_PREFIX = "/api/";
-  static final String API_VERSION = "v1";
   private static final String HEALTH_CHECK_KEY = "  ҉";
 
   @Autowired
   RedisCounterService redisCounterService;
-
-  @ApiOperation(
-          value = "Returns subsequent key number.",
-          notes = "Secured with basic auth."
-  )
-  @ApiResponses(value = {
-          @ApiResponse(code = 200, message = "Key number successfully increased"),
-          @ApiResponse(code = 401, message = "User is unauthorized"),
-          @ApiResponse(code = 500, message = "Internal server error"),
-  })
-  @RequestMapping(value = "/counter/{key}", method = RequestMethod.POST)
-  public Integer incrementAndGetNextValue(@PathVariable String key) {
-    return redisCounterService.incrementAndGetValue(key);
-  }
 
   @ApiOperation("Checks service health.")
   @ApiResponses(value = {

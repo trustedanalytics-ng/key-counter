@@ -40,14 +40,14 @@ public class SwaggerConfig {
   }
 
   private Predicate<String> orgsPaths() {
-    return or(regex(Controller.API_PREFIX + ".*"));
+    return or(regex(KeyCounterController.API_PREFIX + ".*"));
   }
 
   private ApiInfo buildApiInfo() {
     return new ApiInfoBuilder()
             .title("Key Counter API")
             .description("Service that generates subsequent key numbers.")
-            .version(Controller.API_VERSION)
+            .version(KeyCounterController.API_VERSION)
             .license("Apache License Version 2.0")
             .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0")
             .build();

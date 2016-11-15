@@ -12,13 +12,13 @@
   "host" : "localhost",
   "basePath" : "/",
   "tags" : [ {
-    "name" : "controller",
-    "description" : "Controller"
+    "name" : "key-counter-controller",
+    "description" : "Key Counter Controller"
   } ],
   "paths" : {
     "/api/v1/counter/{key}" : {
       "post" : {
-        "tags" : [ "controller" ],
+        "tags" : [ "key-counter-controller" ],
         "summary" : "Returns subsequent key number.",
         "description" : "Secured with basic auth.",
         "operationId" : "incrementAndGetNextValueUsingPOST",
@@ -47,9 +47,9 @@
           }
         }
       }
-    },
-    "/api/v1/healthz" : {
-      "get" : {
+    }
+  }
+}{
         "tags" : [ "controller" ],
         "summary" : "Checks service health.",
         "operationId" : "checkHealthUsingGET",
